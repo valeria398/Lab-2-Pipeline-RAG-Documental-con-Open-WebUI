@@ -6,18 +6,17 @@ services:
       - "11434:11434"
     volumes:
       - ollama_data:/root/.ollama
-    environment:
-      - OLLAMA_MAX_LOADED_MODELS=2
     restart: unless-stopped
 
   open-webui:
-    image: ghcr.io/open-webui/open-webui:main
+    image: ghcr.io/open-webui/open-webui:v0.5.20
     container_name: open-webui-lab
     ports:
       - "3000:8080"
     environment:
       - OLLAMA_BASE_URL=http://ollama-rag-lab:11434
-      - WEBUI_AUTH=true
+      - WEBUI_AUTH=true  # Permitirá crear un usuario administrador local
+      #- WEBUI_AUTH_TRUSTED_HEADER=false Solo cuando se quiera registrar mas de un usuario en la web ui
     volumes:
       - open-webui_data:/app/backend/data
     depends_on:

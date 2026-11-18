@@ -1,0 +1,10 @@
+@"
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+ollama/
+open-webui/
+data/
+"@ | Out-File -FilePath .gitignore -Encoding utf8
